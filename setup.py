@@ -3,10 +3,11 @@ from typing import List
 
 hypen_e = '-e .'
 
-def get_requirements(file_path: str) -> List[str]:
-    '''
+'''
     This function will return the requirements list.
-    '''
+      '''
+
+def get_requirements(file_path: str) -> List[str]:
     requirements = []
     with open(file_path) as file_obj:
         requirements = file_obj.readlines()
