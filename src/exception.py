@@ -1,5 +1,5 @@
 import sys #sys provides functions and variables to manipulate diff. parts of python run time env.\
-
+from src.logger import logging
 
 def error_message_detail(error, error_detail:sys):
     #errordetail will be stores in sys and we get it out
