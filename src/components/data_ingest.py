@@ -7,7 +7,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass 
 
-
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
 
 # In the class below we want to give input (like where to save train/test/raw data etc.)
 # Decorator @dataclass will help us directly define the class variable, otherwise inside
@@ -18,24 +19,25 @@ from dataclasses import dataclass
 
 @dataclass
 class DataIngestionConfig:
-    train_data_path: str = os.path.join('artifacts', "train.csv")
+    train_data_path: str = os.path.join('artifacts', "train.csv") #create a aritifats folder and stroing the train data in it
     test_data_path: str = os.path.join('artifacts', "test.csv")
     raw_data_path: str = os.path.join('artifacts', "raw.csv")
 
 class DataIngestion:
     def __init__(self):
-        self.ingestion_config = DataIngestionConfig()
+        self.ingestion_config = DataIngestionConfig() #You create a DataIngestion object and it automatically creates its own DataIngestionConfig object. As a result, all 3 paths defined above will get saved in ingestion_config class variable
 
     def intiate_data_ingestion(self):
         logging.info("Entered the data ingestion method or component")
         try:
             # Can also read from MongoDB, APIs and other DBs
-            df=pd.read_csv(r'data\StudentsPerformance.csv')  # Using raw string
+            df=pd.read_csv(r'notebook\data\StudentsPerformance.csv')  # Using raw string
             logging.info('Read the dataset as dataframe')
 
-            # Creating directories if not exist
+            # We have created the path directions above in DataIngestionConfig(). below we give the command to create the folders ('artifacts') and save the data in them
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
+            
             logging.info("Train test split initiated")
 
             # Splitting the data into train and test sets
@@ -55,6 +57,13 @@ class DataIngestion:
         except Exception as e:
             raise CustomException(e, sys)
 
+'''
+index=False: This argument indicates that you do not want to write row indices to the CSV file. 
+'''
+
+'''
 if __name__ == "__main__":
-    obj = DataIngestion()
-    obj.intiate_data_ingestion()
+    data_ingestion = DataIngestion()
+    data_ingestion.intiate_data_ingestion()
+
+    '''

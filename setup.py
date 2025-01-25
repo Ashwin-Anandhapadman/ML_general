@@ -24,3 +24,8 @@ setup(
     packages=find_packages(),
     install_requires=get_requirements('requirements.txt')
 )
+
+'''
+whenever we use open funct, the '\n' also gets added 
+into readlines.  so we replace '\n' with blank using req.replace
+'''

@@ -24,7 +24,7 @@ class DataTransformation:
 
     def get_data_transformer_object(self):
         '''
-        This function si responsible for data trnasformation
+        This function is responsible for data transformation. It will take the data and transform it into a format that can be used by the model.
         
         '''
         try:
@@ -55,8 +55,8 @@ class DataTransformation:
 
             )
 
-            logging.info(f"Categorical columns: {categorical_columns}")
-            logging.info(f"Numerical columns: {numerical_columns}")
+            logging.info(f"Categorical columns completed")
+            logging.info(f"Numerical columns completed")
 
             preprocessor=ColumnTransformer(
                 [
@@ -122,3 +122,11 @@ class DataTransformation:
             )
         except Exception as e:
             raise CustomException(e,sys)
+        
+'''
+
+if __name__ =="__main__":
+    data_transformation=DataTransformation()
+    data_transformation.initiate_data_transformation()
+
+    '''

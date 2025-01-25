@@ -1,13 +1,9 @@
-
 import sys
 from src.logger import logging
+
 def error_message_detail(error,error_detail:sys):
-    _, _,exc_tb = error_detail.exc_info()  # we put _,_,exc_tb becuz we want tonly the 3rd info from error_detail that gives details on files in which error occured and line number and its details
-#errordetail will be stores in sys and we get it out
-
-    file_name=exc_tb.tb_frame.f_code.co_filename #check custom exception handling documentation for this code
-
-  
+    _, _,exc_tb = error_detail.exc_info()
+    file_name=exc_tb.tb_frame.f_code.co_filename
     error_message = 'Error occured in python script name [{0}] line number [{1}] error message [{2}]'.format(file_name,exc_tb.tb_lineno,str(error))
     return error_message
 
