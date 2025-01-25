@@ -1,4 +1,4 @@
-## ML_general projects
+## END-END ML project implementation
 
 
 This is an end to end ML project implementation repo. These projects have helped me understand end-end ML project implemenation. 
